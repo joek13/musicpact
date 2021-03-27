@@ -5,40 +5,55 @@ require('./passport');
 const cookieSession = require('cookie-session');
 const isLoggedIn = require('./middleware/auth');
 const app = express();
+const MongoClient = require("mongodb").MongoClient;
 
-const port = 8080;
+uri = process.env["DB_URI"]
 
-app.use(cookieSession({
-    name: 'spotify-auth-session',
-    keys: ['key1', 'key2']
-}));
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-app.use(passport.initialize());
-app.use(passport.session());
-
-// app.use(express.static("public"));
-
-app.get('/', isLoggedIn, (req, res) => {
-    res.send(`Hello world  ${req.user.displayName}`);
-});
-
-app.get('/logout', (req, res) => {
-    req.session = null;
-    req.logout();
-    res.redirect('/');
-})
-
-app.get('/auth/error', (req, res) => res.send('Unknown Error'));
-
-app.get('/auth/spotify', passport.authenticate('spotify'));
-
-app.get('/auth/spotify/callback', 
-    passport.authenticate('spotify', { failureRedirect: '/auth/error' }),
-    (req, res) => { res.redirect('/'); }
-);
+client.connect(err => {
+    const port = 8080;
+    const db = client.db("userdb");
+    const cookieSession = require('cookie-session');
+    const app = express();
 
 
+    app.get('/', isLoggedIn, (req, res) => {
+        res.send(`Hello world  ${req.user.displayName}`);
+    });
 
-app.listen(port, () => {
-    console.log(`Application listening at http://localhost:${port}`)
+    app.get('/logout', (req, res) => {
+        req.session = null;
+        req.logout();
+        res.redirect('/');
+    })
+
+    app.get('/auth/error', (req, res) => res.send('Unknown Error'));
+
+    app.use(cookieSession({
+        name: 'spotify-auth-session',
+        keys: ['key1', 'key2']
+    }));
+
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    // app.use(express.static("public"));
+
+    app.get('/', (req, res) => {
+        res.send(`Hello world  ${req.user.displayName}`);
+    });
+
+    app.get('/auth/error', (req, res) => res.send('Unknown Error'));
+
+    app.get('/auth/spotify', passport.authenticate('spotify'));
+
+    app.get('/auth/spotify/callback',
+        passport.authenticate('spotify', { failureRedirect: '/auth/error' }),
+        (req, res) => { res.redirect('/'); }
+    );
+
+    app.listen(port, () => {
+        console.log(`Application listening at http://localhost:${port}`)
+    });
 });
