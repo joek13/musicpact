@@ -6,9 +6,9 @@
   "repository": "git@github.com:joek13/musicpact.git",
   "author": "Unholy Quartet",
   "license": "MIT",
-	"scripts": {
-		"app": "node app.js"
-	},
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "express": "^4.17.1"
   }
