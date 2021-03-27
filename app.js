@@ -2,14 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
 require('./passport');
-const nconf = require('nconf');
 const MongoClient = require("mongodb").MongoClient;
 
-nconf.argv()
-    .env()
-    .file("config.json");
-
-uri = nconf.get("DB_URI");
+uri = process.env["DB_URI"]
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
