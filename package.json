@@ -7,7 +7,7 @@
   "author": "Unholy Quartet",
   "license": "MIT",
   "scripts": {
-    "app": "node app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "cookie-session": "^1.4.0",
