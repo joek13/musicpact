@@ -3,6 +3,7 @@ const express = require('express');
 const passport = require('passport');
 require('./passport');
 const cookieSession = require('cookie-session');
+const isLoggedIn = require('./middleware/auth');
 const app = express();
 
 const port = 8080;
@@ -15,11 +16,17 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
-app.get('/', (req, res) => {
+app.get('/', isLoggedIn, (req, res) => {
     res.send(`Hello world  ${req.user.displayName}`);
 });
+
+app.get('/logout', (req, res) => {
+    req.session = null;
+    req.logout();
+    res.redirect('/');
+})
 
 app.get('/auth/error', (req, res) => res.send('Unknown Error'));
 
