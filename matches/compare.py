@@ -8,6 +8,11 @@ def compare(person1, person2):
     - person2, in some fashion
     """
 
+def compare_wrapper():
+    l1 = [0,1,2,3,4,5,6,7,8,9]
+    l2 = [1,0,2,3,4,5,6,7,8,9]
+    print(calc_ranked_shared_songs(l1, l2))
+
 def calc_ranked_shared_songs(person1_songs, person2_songs):
     """
     calculates the sum of shared_songs and ranked_song_score
@@ -36,13 +41,13 @@ def ranked_song_score(person1_songs, person2_songs, person1_ranked_dict, person2
     """
     function to create a song rank comparison score
     """
-    pperson1_set = set(person1_songs)
+    person1_set = set(person1_songs)
     person2_set = set(person2_songs)
     score = 0
     set_len = len(person1_set)
 
     for song in person1_set.intersection(person2_set):
-        score += 1 - abs(person1_ranked_dict[song] - person2_ranked_dict)/set_len
+        score += 1 - abs(person1_ranked_dict[song] - person2_ranked_dict[song])/set_len
         # add 1 - 0.01 * the differential in rank for each shared song
     
     return score
@@ -56,3 +61,5 @@ def rank_dict(person_songs):
     for i in range(len(person_songs)):
         ranked_dict[person_songs[i]] = i + 1
     return ranked_dict
+
+compare_wrapper()
