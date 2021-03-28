@@ -33,16 +33,18 @@ client.connect(err => {
         res.redirect('/');
     })
 
-    // app.use(express.static("public"));
+    app.use(express.static("public"));
 
     app.get('/auth/error', (req, res) => res.send('Unknown Error'));
 
-    app.get('/auth/spotify', passport.authenticate('spotify'));
+    app.get('/auth/spotify', passport.authenticate('spotify',
+        {
+            "scope": ["user-top-read", "user-follow-modify"]
+        }));
 
     app.get('/auth/spotify/callback',
-        passport.authenticate('spotify', { 
-            scope: ['user-read-recently-played', 'user-top-read', 'user-follow-read', 'user-read-email'],
-            failureRedirect: '/auth/error', 
+        passport.authenticate('spotify', {
+            failureRedirect: '/auth/error',
         }),
         (req, res) => { res.redirect('/'); }
     );
