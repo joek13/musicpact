@@ -1,0 +1,83 @@
+:root {
+    --brand-white: #FFFFFF;
+    --brand-black: #0B132B;
+    --brand-blue: #5BC0BE;
+    --brand-red: #EF6461;
+}
+
+html, body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--brand-white);
+    background-color: var(--brand-black);
+}
+
+section.hero {
+    display: block;
+    margin: 0 0 0 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Dela Gothic One', cursive;
+    color: --brand-black;
+}
+
+.title, .subtitle {
+    color: var(--brand-white);
+}
+
+.title.big {
+    color: var(--brand-white);
+    font-size: 3rem;
+}
+
+.bg-black {
+    background-color: var(--brand-black);
+    color: var(--brand-white);
+}
+
+.bg-red {
+    background-color: var(--brand-red)
+}
+
+.blue {
+    color: var(--brand-blue);
+}
+
+.pop {
+    color: var(--brand-red);
+    font-weight: bold;
+}
+
+.container.timer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.unit.timer {
+    text-align: center;
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    margin: 5px 5px 5px 5px;
+}
+
+.unit.timer > h2 {
+    font-size: 2rem;
+}
+
+.unit.timer > p {
+    font-size: 1rem;
+}
+
+.button {
+    font-size: 1.2rem;
+    background-color: var(--brand-blue);
+    color: var(--brand-white);
+    border: none;
+}
+
+.button:hover {
+    background-color: var(--brand-white);
+    color: var(--brand-blue);
+}

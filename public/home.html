@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MusicPact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Montserrat&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <section class="section hero">
+        <div class="container has-text-centered">
+            <h1 class="title big">MusicPact</h1>
+            <h2 class="subtitle">A Product of the Unholy Quartet</h2>
+        </div>
+    </section>
+    <section class="section hero">
+        <div class="container">
+            <h1 class="title blue">
+                Find your musical match
+            </h1>
+            <p>It's no secret: shared music taste is the best predictor for relationship compatibility. Whether you're
+                looking for a new friend or that special someone, we've got your back. Log in with your Spotify account
+                details, and we'll take note of your favorite artists, genres, and albums. Then, when <span
+                    class="pop">Match Time</span> comes, we'll contact you by email with your algorithmically optimal
+                match.</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container has-text-centered">
+            <a href="/auth/spotify" class="button">Log in with Spotify</a>
+        </div>
+    </section>
+    <footer id="match-time" class="bg-red footer">
+        <div class="container has-text-centered">
+            <h1 class="title">
+                Match Time
+            </h1>
+        </div>
+        <div class="container timer">
+            <div class="timer unit">
+                <h2 id="days"></h2>
+                <p>DAYS</p>
+            </div>
+            <div class="timer unit">
+                <h2 id="hours"></h2>
+                <p>HOURS</p>
+            </div>
+            <div class="timer unit">
+                <h2 id="minutes"></h2>
+                <p>MINUTES</p>
+            </div>
+            <div class="timer unit">
+                <h2 id="seconds"></h2>
+                <p>SECONDS</p>
+            </div>
+        </div>
+        <div class="container has-text-centered">
+            <p>(make sure you login and get your details down before then!)</p>
+        </div>
+        </section>
+        <script src="/timer.js"></script>
+</body>
+
+</html>
